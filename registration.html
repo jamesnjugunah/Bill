@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotnet Registration</title>
+    <link rel="stylesheet" href="reg.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Register</h2><hr>
+            <form method="POST" class="form" id="register-form">
+                <label for="reg-email">Email (Username)</label>
+                <input type="email" id="reg-email" name="reg-email" placeholder="Enter your email" required>
+
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" required>
+
+                <label for="reg-password">Password</label>
+                <div class="password-container">
+                    <input type="password" id="reg-password" name="reg-password" placeholder="Enter your password" required>
+                    <span class="toggle-password" onclick="togglePassword('reg-password')">👁️</span>
+                </div>
+
+                <label for="confirm-password">Confirm Password</label>
+                <div class="password-container">
+                    <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm your password" required>
+                    <span class="toggle-password" onclick="togglePassword('confirm-password')">👁️</span>
+                </div>
+
+                <div>
+                    <input type="checkbox" id="reg-agree" required>
+                    <label for="reg-agree">I agree to the <a href="#">terms and conditions</a></label>
+                </div>
+
+                <button type="submit" class="btn">Register</button><br>
+                <a href="login.html" class="terms">Already have an account? login </a>
+                
+            </form>
+    </div>
+    <script>
+        function togglePassword(id) {
+            const passwordInput = document.getElementById(id);
+            if (passwordInput.type === "password") {
+                passwordInput.type = "text";
+            } else {
+                passwordInput.type = "password";
+            }
+        }
+        const form = document.getElementById('register-form');
+    form.addEventListener('submit', async (event) => {
+    event.preventDefault();
+
+    const email = document.getElementById('email').value;
+    const phone = document.getElementById('phone').value;
+    const password = document.getElementById('password').value;
+    const confirmPassword = document.getElementById('confirmPassword').value;
+
+    const response = await fetch('/api/register', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, phone, password, confirmPassword }),
+    });
+
+    const data = await response.json();
+    if (response.ok) {
+        alert(data.message); // Registration success
+        window.location.href = data.redirect; // Redirect to login page
+    } else {
+        alert(data.error); // Show error message
+    }
+});
+        
+    
+</script>
+
+
+    
+</body>
+</html>
