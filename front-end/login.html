@@ -9,10 +9,7 @@
 <body>
     <div class="container">
         <h2>Login</h2><hr>
-        <button class="google-btn">
-            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAcBJREFUSEvV1U2IT1EYBvDfLHzFZGFtISmikVn4KlkiWYopC6wsUWoWsiBJoSyt2PjKgiRWSrGZlTINISUrpimaaRqKGffVnTod9/7/J5rirdute57zPu/7nPc8t8ccR88c5/dPEPRjBzZhK7+KeoU3eIB7nVTo1MF8nMfRLjI+w158bMK1EazBnepZW3hGUchgKcFCvMCqhg2v8R0rEbiImziA6VKCSziWgL/hLK5gtP4+r0p4CtHpPvxo6zSXaDueJOAJbMC7Qql+g+UENzCQoA7j6p8mj305wRA21gnHsTRLvqga10ddCM/g8SwmJxjDsnoxxm9blmwJQrZOcQIX2gg+YPlfEsS9udxGcB976sUpLMZMUm6TRNHxugSzv5qu220Eod/JBHwI17pIchHHE8wKvG8jiMWXySX6gvUI6ZqiD3FWvfXiSNZNo5vGlT+XZPtcVXQQId9shE8dwels0mLEb6WVNHlR3NLnDT4URG+rCYlJCqtYkLX0ELvzNtvMbnUlzd2qmniXxFPswmQpQeBChpAqPcB8/1eEd4UvNfpRyR8tvGgntmBzffuH65/NdXzq1GIJQYlErZj/n+AnYyRHGa4JiQsAAAAASUVORK5CYII=" alt="Google Logo">
-            Continue with Google
-        </button>
+        
         <form action="#" method="POST">
             <label for="email">Email:</label>
             <input type="email" id="email" name="email" placeholder="Enter your email" required>
@@ -24,7 +21,7 @@
             </div>
 
             <div>
-                <input type="checkbox" id="remember-me">
+                <input type="checkbox" id="remember-me" name="remember-me">
                 <label for="remember-me">Remember me</label><br>
 
             <button type="submit" class="btn">Login</button><br>
@@ -43,5 +40,34 @@
                     passwordInput.type = "password";
                 }
             }
+            document.querySelector('form').addEventListener('submit', function(event) {
+                event.preventDefault();
+                const rememberMe = document.getElementById('remember-me').checked;
+                const email = document.getElementById('email').value;
+                const password = document.getElementById('password').value;
+
+                if (rememberMe) {
+                    localStorage.setItem('email', email);
+                    localStorage.setItem('password', password);
+                } else {
+                    localStorage.removeItem('email');
+                    localStorage.removeItem('password');
+                }
+
+                // Proceed with form submission or further processing
+                this.submit();
+            });
+
+            window.addEventListener('load', function() {
+                const savedEmail = localStorage.getItem('email');
+                const savedPassword = localStorage.getItem('password');
+
+                if (savedEmail && savedPassword) {
+                    document.getElementById('email').value = savedEmail;
+                    document.getElementById('password').value = savedPassword;
+                    document.getElementById('remember-me').checked = true;
+                }
+            });
+
         </script>
 </body>
