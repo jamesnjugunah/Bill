@@ -3,7 +3,6 @@ const dotenv = require('dotenv');
 const colors = require('colors');
 const logger = require('morgan');
 const path = require('path');
-const createError = require('http-errors');
 const cookieParser = require('cookie-parser');
 const errorHandler = require('./src/middleware/error');
 const connectDB = require('./src/config/conn');
@@ -12,8 +11,6 @@ const authRouter = require('./src/routes/auth');
 
 // Load env vars
 dotenv.config({ path: './src/config/config.env' });
-
-// test change
 
 // Connect to database
 connectDB();
@@ -30,18 +27,14 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Routes
 app.use('/api/v1/auth', authRouter);
 
-// catch 404 and forward to error handler
-app.use(function (req, res, next) {
-  next(createError(404));
+// hello world route
+app.get('/', (req, res) => {
+  res.send('Hello World!');
 });
 
 // Error handler
 app.use(errorHandler);
 
-// hello world route
-app.get('/', (req, res) => {
-  res.send('Hello World!');
-});
 
 const PORT = process.env.PORT || 5000;
 

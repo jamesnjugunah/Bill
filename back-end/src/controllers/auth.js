@@ -4,18 +4,22 @@ const User = require('../models/User');
 const asyncHandler = require('../middleware/async');
 
 const registerUser = asyncHandler(async (req, res, next) => {
-  const { name, email, password } = req.body;
+  const { email, phone, password } = req.body;
 
-  let user = await User.findOne({ email });
+  let user = await User.findOne({ where: { email } });
+
+  // encrypt password
+  const salt = await bcrypt.genSalt(10);
+  const hashedPassword = await bcrypt.hash(password, salt);
 
   if (user) {
     return res.status(400).json({ msg: 'User already exists' });
   }
 
   user = await User.create({
-    name,
-    email,
-    password,
+    phone,
+    email: email.toLowerCase(),
+    password: hashedPassword,
   });
 
   const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
@@ -32,7 +36,7 @@ const loginUser = asyncHandler(async (req, res, next) => {
     return res.status(400).json({ msg: 'Please enter email and password' });
   }
 
-  const user = await User.findOne({ email }).select('+password');
+  const user = await User.findOne({ where: { email } });
 
   if (!user) {
     return res.status(401).json({ msg: 'Invalid credentials' });

@@ -4,14 +4,6 @@ const sequelize = require('../config/db');
 const User = sequelize.define(
   'User',
   {
-    firstName: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    lastName: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
     email: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -27,6 +19,10 @@ const User = sequelize.define(
       allowNull: false,
       unique: true,
     },
+    password: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
   },
   {
     timestamps: true,
@@ -34,5 +30,7 @@ const User = sequelize.define(
     updatedAt: 'updated_at',
   }
 );
+
+User.sync();
 
 module.exports = User;
