@@ -353,4 +353,48 @@
 .close-btn:hover {
     color: #fd0505;
 }
+.butn {
+    background-color: transparent;
+}
+.add-btn {
+    background-color: #28a745; /* Green color */
+    color: white;
+    border: none;
+    font-size: 12px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background 0.3s ease;
+    display:inline-flex;
+    justify-content: center;
+    align-items: center;
+    height:50px;
+    font-size: 16px;
+    position:absolute;
+    bottom:20%;
+    right:6%;    
+    align-content: center;
+    text-align: center;
+}
 
+.add-btn:hover {
+    background-color: #218838;
+}
+@media screen and (max-width: 576px) {
+    .add-btn {
+        background-color: #28a745; /* Green color */
+        color: white;
+        border: none;
+        font-size: 12px;
+        cursor: pointer;
+        border-radius: 5px;
+        transition: background 0.3s ease;
+        display:inline-flex;
+        justify-content: center;
+        align-items: center;
+        height:50px;
+        font-size: 16px;
+        margin-top: 20px;        
+        align-content: center;
+        text-align: center;
+    }
+}
