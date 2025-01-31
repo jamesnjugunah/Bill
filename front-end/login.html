@@ -68,6 +68,15 @@
                     document.getElementById('remember-me').checked = true;
                 }
             });
+            //forgot password logic
+            document.querySelector('.link a').addEventListener('click', function(event) {
+                event.preventDefault();
+                const email = prompt('Please enter your email address:');
+                if (email) {
+                    // Here you would typically send the email to the server to handle the password reset process
+                    alert('If an account with that email exists, a password reset link will be sent.');
+                }
+            });
 
         </script>
 </body>
