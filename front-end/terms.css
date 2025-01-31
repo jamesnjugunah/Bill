@@ -1,0 +1,73 @@
+/*terms css code*/
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    background-color: white;
+    color: #333;
+}
+
+/* Header */
+header {
+    background: #007bff;
+    color: white;
+    text-align: center;
+    padding: 15px 0;
+    font-size: 1.5em;
+    position: sticky;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+/* Main Content */
+main {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background: white;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+/* Terms Section */
+.terms h2 {
+    color: #007bff;
+    margin-top: 20px;
+}
+
+.terms p {
+    font-size: 1em;
+    line-height: 1.6;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 10px;
+    background: #343a40;
+    color: white;
+    margin-top: 20px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    main {
+        width: 90%;
+        padding: 15px;
+    }
+
+    header {
+        font-size: 0.6em;
+    }
+
+    .terms h2 {
+        font-size: 1.3em;
+    }
+
+    .terms p {
+        font-size: 0.95em;
+    }
+}
