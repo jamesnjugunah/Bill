@@ -53,7 +53,7 @@ input[type="checkbox"] {
 }
 
 .password-container input {
-    width: 95%;
+    width: 100%;
 }
 
 .toggle-password {
@@ -115,7 +115,7 @@ input[type="checkbox"] {
         
     }
     .password-container input {
-        width: 94%;
+        width: 100%;
     }
     h2 {
         font-size: 30px;
